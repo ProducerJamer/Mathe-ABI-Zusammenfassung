@@ -1,0 +1,1197 @@
+\documentclass[a4paper, 15pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usetikzlibrary{arrows,calc}
+\usepackage{uarial}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{blindtext}
+\usepackage{fancyhdr}
+\usepackage{MnSymbol}
+\usepackage{esvect}
+\usepackage{array}
+\usepackage{spath3}
+\usepackage{bigdelim}
+\newcommand{\uproman}[1]{\uppercase\expandafter{\romannumeral#1}}
+\newcommand{\lowroman}[1]{\romannumeral#1\relax}
+
+\pagestyle{fancy}
+	\lhead{\includegraphics[scale=0.13]{svg/BSZLOGO.png}}
+	\chead{\slshape Mathe ABI}
+	\rhead{\slshape Version 1.2 TGI-13}
+\renewcommand{\headrulewidth}{0.2pt}
+	\title{Mathe ABI Zusammenfassung}
+	\date{\slshape 01.04.2021}
+	\author{\slshape Jannis Müller, Robin Rausch}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Zahlenmengen}
+\begin{table} [h]
+\begin{tabularx}{\textwidth}{ X X r }
+  $\mathbb{N} = \{0; 1; 2; ...\}$ & natürliche Zahlen & $\mathbb{N}^* = \mathbb{N}\backslash\{0\}$\\[0.2cm] 
+  $\mathbb{Z} = \{... -2; -1; 0; 1; ...\}$ & ganze Zahlen & $\mathbb{Z}^* = \mathbb{Z}\backslash\{0\}$\\[0.2cm]  
+  $\mathbb{R}$ & reelle Zahlen & $\mathbb{R}^* = \mathbb{R}\backslash\{0\}$\\[0.2cm]  
+  $\mathbb{R}_+ = \{x|x \in \mathbb{R} \land x \geq0 \}$ & nicht negativ reelle Zahlen & $\mathbb{R}^*_+ = \mathbb{R}_+\backslash\{0\}$\\
+\end{tabularx}
+\end{table}
+\section{Binomische Formeln}
+\begin{table} [h]
+\begin{tabularx}{\textwidth}{ X X r }
+  $(a+b)^2 = a^2+2ab+b^2$ & $(a-b)^2 = a^2-2ab+b^2$ & $(a+b)(a-b) = a^2 - b^2$
+\end{tabularx}
+\end{table}
+\section{Potenzen und Wurzeln}
+mit $a,b \in \mathbb{R}^*_+$ ; $n \in \mathbb{N} \backslash \{0;1\}$ ; $r,s \in \mathbb{R}$
+\begin{table} [h]
+\Large
+\begin{tabularx}{\textwidth}{ X X X r }
+$a^r \cdot a^s = a^{r+s}$ & $\frac{a^r}{a^s} = a^{r-s}$ & $a^r \cdot b^r = (ab)^r$ & $\frac{a^r}{b^r} =\Big(\frac{a}{b}\Big)^r$\\ [0.4cm] 
+$a^{-r} = \frac{1}{a^r}$ & $a^{\frac{1}{n}} = \sqrt[n]{a}$ & $\big(a^r\big)^s = a^{r \cdot s}$ & $a^0 = 1$
+\end{tabularx}
+\end{table}
+\section{Funktionen und zugehörige Gleichungen}
+\vspace{0.5cm}
+\begin{center}
+\textbf{Potenzfunktion mit $\mathbf{f(x)=x^k}$ mit $\mathbf{k \in \mathbb{Z^*}}$}
+\end{center}
+\vspace{0.5cm}
+\begin{minipage}{.49\textwidth}
+\begin{center}
+\textbf{k gerade und positiv}
+\end{center}
+\begin{tikzpicture}[scale=1.5]
+%Koordinatensystem
+	\draw [->](-2.5,0)--(2.5,0) node[anchor=north] {$x$};
+	\draw [->](0,0)--(0,4.5) node[anchor=east] {$y$};
+	\foreach \x in {-2,-1,0,1,2}
+	\draw[shift={(\x,0)},color=black] (0pt, 0pt) -- (0pt,-2pt)node[anchor=north] {$ \x $};
+	\foreach \y in {1,2,3,4}
+	\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-2pt,0pt)node[anchor=east] {$ \y $};
+%Funktion
+	\draw [line width=1pt, domain= -2:2, samples=100, red] plot(\x, {pow(\x, 2)})node[anchor=east] {$ x^2 $};
+	\draw [line width=1pt, domain= -1.4:1.4, samples=100, blue] plot(\x, {pow(\x, 4)})node[anchor=east] {$ x^4 $};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\textbf{k ungerade und positiv}\newline\newline
+\begin{tikzpicture}[scale=1.5]
+%Koordinatensystem
+	\draw [->](-2.5,0)--(2.5,0) node[anchor=north] {$x$};
+	\draw [->](0,-2.5)--(0,2.5) node[anchor=east] {$y$};
+	\foreach \x in {-2,-1,1,2}
+	\draw[shift={(\x,0)},color=black] (0pt, 0pt) -- (0pt,-2pt)node[anchor=north] {$ \x $};
+	\foreach \y in {-2,-1,1,2}
+	\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-2pt,0pt)node[anchor=east] {$ \y $};
+%Funktion
+	\draw [line width=1pt, domain= -1.3:1.3, samples=100, red] plot(\x, {pow(\x, 3)})node[anchor=west] {$ x^3 $};
+	\draw [line width=1pt, domain= -1.2:1.2, samples=100, blue] plot(\x, {pow(\x, 5)})node[anchor=east] {$ x^5 $};
+\end{tikzpicture}
+\end{minipage}
+\newpage
+\begin{minipage}{.49\textwidth}
+\begin{center}
+\textbf{k gerade und negativ}
+\end{center}
+\begin{tikzpicture}[scale=1.5]
+%Koordinatensystem
+	\draw [->](-2.5,0)--(2.5,0) node[anchor=north] {$x$};
+	\draw [->](0,0)--(0,4.5) node[anchor=east] {$y$};
+	\foreach \x in {-2,-1,0,1,2}
+	\draw[shift={(\x,0)},color=black] (0pt, 0pt) -- (0pt,-2pt)node[anchor=north] {$ \x $};
+	\foreach \y in {1,2,3,4}
+	\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-2pt,0pt)node[anchor=east] {$ \y $};
+%Funktion
+	\draw [line width=1pt, domain= -2.5:-0.5, samples=100, red] plot(\x, {pow(\x, -2)})node[anchor=south] {$ x^{-2} $};
+	\draw [line width=1pt, domain= 0.5:2.5, samples=100, red] plot(\x, {pow(\x, -2)});
+	\draw [line width=1pt, domain= -2.5:-0.7, samples=100, blue] plot(\x, {pow(\x, -4)})node[anchor=east] {$ x^{-4} $};
+	\draw [line width=1pt, domain= 0.7:2.5, samples=100, blue] plot(\x, {pow(\x, -4)});
+\end{tikzpicture}
+\begin{center}
+\textbf{waagerechte Asymptote y = 0}
+\end{center}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\begin{center}
+\textbf{k ungerade und negativ}
+\end{center}
+\begin{tikzpicture}[scale=1.5]
+%Koordinatensystem
+	\draw [->](-2.5,0)--(2.5,0) node[anchor=north] {$x$};
+	\draw [->](0,-2.5)--(0,2.5) node[anchor=east] {$y$};
+	\foreach \x in {-2,-1,1,2}
+	\draw[shift={(\x,0)},color=black] (0pt, 0pt) -- (0pt,-2pt)node[anchor=north] {$ \x $};
+	\foreach \y in {-2,-1,1,2}
+	\draw[shift={(0,\y)},color=black] (0pt,0pt) -- (-2pt,0pt)node[anchor=east] {$ \y $};
+%Funktion
+	\draw [line width=1pt, domain= -2.5:-0.4, samples=100, red] plot(\x, {pow(\x, -1)});
+	\draw [line width=1pt, domain= 0.4:2.5, samples=100, red] plot(\x, {pow(\x, -1)})node[anchor=west] {$ x^{-1}$};
+	\draw [line width=1pt, domain= -2.5:-0.75, samples=100, blue] plot(\x, {pow(\x, -3)});
+	\draw [line width=1pt, domain= 0.75:2.5, samples=100, blue] plot(\x, {pow(\x, -3)})node[anchor=west] {$ x^{-3}$};
+\end{tikzpicture}
+\begin{center}
+\textbf{senkrechte Asymptote x = 0}
+\end{center}
+\end{minipage}
+\vspace{1cm}
+\section{Vektorgeometrie}
+\subsection{Vektorarten}
+\subsubsection{Der Nullvektor}
+Der Nullvektor besitzt immer die Länge 0LE (Längen Einheiten). Er ist im eigentlichen Sinne kein richtiger Vektor, da die Richtung undefiniert ist.
+\begin{equation*}
+\vv{n_0}= \left(\begin{array}{c} 0 \\ 0 \\ 0 \end{array}\right)
+\end{equation*}
+\subsubsection{Der Verbindungsvektor}
+\begin{minipage}{.49\textwidth}
+Der Verbindungsvektor ist ein Vektor zwischen zwei Punkten.
+\begin{center}
+$P(1|1|1); Q(3|4|3)$
+\end{center}
+Die Differenz der Koordinaten der Ortsvektoren liefert die Zielkoordinate. Hier:
+\begin{equation*}
+\vv{PQ}= \left(\begin{array}{c} 3 \\ 4 \\ 3 \end{array}\right) - \left(\begin{array}{c} 1 \\ 1 \\ 1 \end{array}\right)
+\end{equation*}
+\begin{equation*}
+\leadsto\vv{PQ}= \left(\begin{array}{c} 2 \\ 3 \\ 2 \end{array}\right)
+\end{equation*}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\begin{center}
+\begin{tikzpicture}
+\draw [->](0,0,0)--(4.5,0,0) node[anchor=north] {$x$};
+\draw [->](0,0,0)--(0,4.5,0) node[anchor=east] {$y$};
+\draw [->](0,0,0)--(0,0,4.5) node[anchor=east] {$z$};
+\draw[fill=blue](3,4,3)circle(1.5pt);
+\node at (2.5,4,3){P};
+\draw[fill=blue](1,1,1)circle(1.5pt);
+\node at (1.5,1,1){Q};
+\draw [->, orange, very thick](3,4,3)--(1,1,1);
+\node at (2,1.5,0){$\vv{PQ}$};
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\subsubsection{Der Ortsvektor}
+\begin{minipage}{.49\textwidth}
+Der Ortsvektor ist ein Vektor vom Ursprung des Koordinatensystems zu einem beliebigen Punkt.
+\begin{equation*}
+P(3|2|1)\leadsto\vv{v}= \left(\begin{array}{c} 3 \\ 2 \\ 1 \end{array}\right)
+\end{equation*}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\begin{center}
+\begin{tikzpicture}
+\draw [->](0,0,0)--(3.5,0,0) node[anchor=north] {$x$};
+\draw [->](0,0,0)--(0,3,0) node[anchor=east] {$y$};
+\draw [->](0,0,0)--(0,0,3) node[anchor=east] {$z$};
+\draw[fill=blue](3,2,1)circle(1.5pt);
+\node at (3,1.6,0){P};
+\draw [->, orange, very thick](0,0,0)--(3,2,1);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\subsection{Rechnen mit Vektoren}
+\subsubsection{Die Addition von Vektoren}
+\begin{minipage}{.49\textwidth}
+\begin{equation*}
+\vv{v} = \vv{v_1} + \vv{v_2} = \left(\begin{array}{c} 2 \\ 2 \\ 0 \end{array}\right) + \left(\begin{array}{c} 1 \\ 2 \\ 2 \end{array}\right) = \left(\begin{array}{c} 3 \\ 4 \\ 2 \end{array}\right)
+\end{equation*}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\begin{center}
+\begin{tikzpicture}
+\draw [->](0,0,0)--(3.5,0,0) node[anchor=north] {$x$};
+\draw [->](0,0,0)--(0,3.5,0) node[anchor=east] {$y$};
+\draw [->](0,0,0)--(0,0,3.5) node[anchor=east] {$z$};
+\draw [->, orange, very thick](0,0,0)--(2,2,0);
+\draw [->, orange, very thick](2,2,0)--(3,4,2);
+\draw [->, blue, very thick](0,0,0)--(3,4,2);
+\node at (1.2,0.8,0){$\vv{v_1}$};
+\node at (2.5,2.5,0){$\vv{v_2}$};
+\node at (1,2,0){$\vv{v}$};
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\subsubsection{Die Skalare Multiplikation von Vektoren}
+\begin{minipage}{.49\textwidth}
+Beim skalaren Multiplizieren multipliziert man einen Vektor mit dem sogenannten Skalar. Hierbei ändert sich die Länge des Vektors, wobei die Richtung gleich bleibt.
+\begin{equation*}
+\vv{v} = \vv{v_1} \cdot r = \left(\begin{array}{c} 2 \\ 4 \\ 2 \end{array}\right) \cdot \dfrac{1}{2} = \left(\begin{array}{c} 1 \\ 2 \\ 1 \end{array}\right)
+\end{equation*}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\begin{center}
+\begin{tikzpicture}
+\draw [->](0,0,0)--(3.5,0,0) node[anchor=north] {$x$};
+\draw [->](0,0,0)--(0,3,0) node[anchor=east] {$y$};
+\draw [->](0,0,0)--(0,0,3) node[anchor=east] {$z$};
+\draw [->, orange, very thick](0,0,0)--(2,4,2);
+\draw [->, blue, very thick](0,0,0)--(1,2,1);
+\node at (1,.7,0){$\vv{v}\cdot r$};
+\node at (1.5,2.2,0){$\vv{v}$};
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\subsubsection{Das Skalarprodukt}
+\begin{minipage}{.49\textwidth}
+Mit dem Skalarprodukt kann man zwei Vektoren auf ihre Orthogonalität prüfen. Zwei Vektoren stehen orthogonal zueinander, wenn ihr Skalarprodukt 0 ergibt.
+\begin{equation*}
+\vv{v} \cdot \vv{u} = \left(\begin{array}{c} 3 \\ 0 \\ -2 \end{array}\right) \cdot \left(\begin{array}{c} 2 \\ 0 \\ 3 \end{array}\right)
+\end{equation*}
+\begin{equation*}
+\vv{v} \cdot \vv{u} = 3 \cdot 2 + 0 \cdot 0 + (-2) \cdot 3 = \mathbf{0}
+\end{equation*}
+\begin{center}
+$\leadsto$ Die Vektoren stehen orthogonal zueinander!
+\end{center}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\begin{center}
+\begin{tikzpicture}
+\draw [->](0,0,0)--(3.5,0,0) node[anchor=north] {$x$};
+\draw [->](0,0,0)--(0,3,0) node[anchor=east] {$y$};
+\draw [->](0,0,0)--(0,0,3) node[anchor=east] {$z$};
+\draw [->, orange, very thick](0,0,0)--(3,0,-2);
+\draw [->, orange, very thick](0,0,0)--(2,0,3);
+\node at (1.7,0.7,0){$\vv{v}$};
+\node at (.5,0,1.5){$\vv{u}$};
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\subsubsection{Das Kreuzprodukt}
+Durch das Berechnen des Kreuzproduktes zweier Vektoren ($V_1; V_2$) erhält man einen dritten Vektor ($V_3$), welcher orthogonal auf den anderen Beiden ($V_1; V_2$) steht. Die Länge des neu entstandenen Vektors ($V_3$) gibt außerdem den Flächeninhalt des durch $V_1$ und $V_2$ aufgespannten Parallelogramms an.\newline\newline
+\begin{minipage}{.49\textwidth}
+\begin{equation*}
+\vv{V_3} = \vv{V_1} \times \vv{V_2} = \left(\begin{array}{c} 1.5 \\ 0 \\ -1 \end{array}\right) \times \left(\begin{array}{c} 1 \\ 0 \\ 1.5 \end{array}\right)
+\end{equation*}
+\begin{equation*}
+= \left(\begin{array}{c} 0\cdot1.5-(-1)\cdot0 \\ -1\cdot1-1.5\cdot1.5 \\ 1.5\cdot0-0\cdot1 \end{array}\right) = \left(\begin{array}{c} 0 \\ -4 \\ 0 \end{array}\right)
+\end{equation*}\newline\newline
+Der Vektor $V_3$ ist 4 LE lang, was bedeutet, dass das aufgespannte Parallelogramm durch $V_1$ und $V_2$ eine Fläche von 4 FE umschließt. $V_3 \perp V_1; V_2$ 
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\begin{center}
+\begin{tikzpicture}
+\draw [->](0,0,0)--(3.5,0,0) node[anchor=north] {$x$};
+\draw [->](0,0,0)--(0,2,0) node[anchor=east] {$y$};
+\draw [->](0,0,0)--(0,0,4.5) node[anchor=east] {$z$};
+\draw [->, orange, very thick](0,0,0)--(1.5,0,-1);
+\draw [->, orange, very thick](0,0,0)--(1,0,1.5);
+\draw [gray, thick](1,0,1.5)--(2.5,0,.5);
+\draw [gray, thick](1.5,0,-1)--(2.5,0,.5);
+\draw [->, blue, very thick](0,0,0)--(0,-4,0);
+\node at (1,0.5,0){$\vv{V_1}$};
+\node at (0.5,-0.3,0){$\vv{V_2}$};
+\node at (-0.3,-2,0){$\vv{V_3}$};
+\end{tikzpicture}
+\end{center}
+\end{minipage}\newline
+Eselsbrücke zum Bilden des Kreuzproduktes:\newline\newline
+\begin{minipage}{.49\textwidth}
+\begin{center}
+\begin{tikzpicture}
+\node at (0,0){1.5};
+\node at (0,-.5){0};
+\node at (0,-1){-1};
+\node at (0,-1.5){1.5};
+\node at (0,-2){0};
+\node at (0,-2.5){-1};
+
+\node at (3,0){1};
+\node at (3,-.5){0};
+\node at (3,-1){1.5};
+\node at (3,-1.5){1};
+\node at (3,-2){0};
+\node at (3,-2.5){1.5};
+
+\draw [thick, red](-0.3,0)--(3.3,0);
+\draw [thick, red](-0.3,-2.5)--(3.3,-2.5);
+
+\draw [thick, blue](0.3,-.5)--(2.7,-1);
+\draw [thick, blue](0.3,-1)--(2.7,-1.5);
+\draw [thick, blue](0.3,-1.5)--(2.7,-2);
+\draw [thick, orange](0.3,-2)--(2.7,-1.5);
+\draw [thick, orange](0.3,-1.5)--(2.7,-1);
+\draw [thick, orange](0.3,-1)--(2.7,-.5);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+Erklärung:\newline
+Es werden zunächst beide Vektoren zwei mal untereinander geschrieben. Die erste und letzte Zeile der Tabelle darf nicht beachtet werden und wird somit gestrichen. Die Kreuzverbindungen stellen die Multiplikation der miteinander verbundenen Werte dar.
+\end{minipage}
+\subsection{Eigenschaften von Vektoren}
+\subsubsection{Die Länge eines Vektors}
+\begin{minipage}{.49\textwidth}
+Die Länge eines Vektors wird mit Hilfe des Satz des Pythagoras berechnet:
+\begin{equation*}
+|\vv{v}| = \Biggl|\left(\begin{array}{c} 3 \\ 2 \\ 0 \end{array}\right)\Biggl| = \sqrt{{3^2}+{2^2}+{0^2}}
+\end{equation*}
+\begin{equation*}
+|\vv{v}| = \sqrt{13}
+\end{equation*}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\begin{center}
+\begin{tikzpicture}
+\draw [->](0,0,0)--(3.5,0,0) node[anchor=north] {$x$};
+\draw [->](0,0,0)--(0,3,0) node[anchor=east] {$y$};
+\draw [->](0,0,0)--(0,0,3) node[anchor=east] {$z$};
+\draw[fill=blue](3,2,0)circle(1.5pt);
+\node at (3.3,2,0){P};
+\draw [->, orange, very thick](0,0,0)--(3,2,0);
+\draw [red](0,0,0)--(3,0,0)--(3,2,0)--(0,0,0);
+\end{tikzpicture}
+\end{center}
+\end{minipage}\newline\newline
+Möchte man einen Vektor auf eine gewünschte Länge bringen, erfordert dies die Ist-Länge zu kennen, um den Vektor auf die gewünschte Soll-Länge strecken oder stauchen zu können:
+\begin{equation*}
+\vv{u} = \dfrac{\text{Soll-Länge}}{\text{Ist-Länge}} \cdot \vv{v}
+\end{equation*}
+\begin{equation*}
+\vv{u} = \dfrac{3}{\sqrt{13}} \cdot \left(\begin{array}{c} 3 \\ 2 \\ 0 \end{array}\right) = \left(\begin{array}{c} \dfrac{9}{\sqrt{13}} \\ \dfrac{6}{\sqrt{13}} \\ 0 \end{array}\right)
+\end{equation*}
+\subsubsection{Parallelität zweier Vektoren}
+\begin{minipage}{.49\textwidth}
+\begin{center}
+Vektoren sind parallel, wenn sie Vielfache sind.
+\end{center}
+\begin{equation*}
+\vv{v_1} \cdot a = \vv{v_2}
+\end{equation*}
+\begin{equation*}
+\vv{v_1} = \left(\begin{array}{c} 1 \\ 1 \\ 1 \end{array}\right) \hspace{1cm} \vv{v_2} = \left(\begin{array}{c} 2 \\ 2 \\ 2 \end{array}\right)
+\end{equation*}
+\begin{equation*}
+\left(\begin{array}{c} 1 \\ 1 \\ 1 \end{array}\right) \cdot 2 = \left(\begin{array}{c} 2 \\ 2 \\ 2 \end{array}\right)
+\end{equation*}
+\begin{equation*}
+a = 2
+\end{equation*}
+\begin{center}
+Die Vektoren sind parallel. 
+\end{center}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\begin{center}
+\begin{tikzpicture}
+\draw [->](0,0,0)--(3.5,0,0) node[anchor=north] {$x$};
+\draw [->](0,0,0)--(0,3.5,0) node[anchor=east] {$y$};
+\draw [->](0,0,0)--(0,0,3.5) node[anchor=east] {$z$};
+\draw [->, orange, very thick](0,0,0)--(2,2,2);
+\draw [->, blue, very thick](0,0,0)--(1,1,1);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\subsection{Geraden im Raum}
+\subsubsection{Aufbau von Geraden}
+Geraden bestehen aus einem Stützvektor, einem streck/stauch Faktor und einem Richtungsvektor:\newline\newline
+\begin{minipage}{.49\textwidth}
+\begin{equation*}
+g:\vv{x} = \left(\begin{array}{c} 1 \\ 1 \\ 1 \end{array}\right) + r \cdot \left(\begin{array}{c} 0.5 \\ 2 \\ -2 \end{array}\right)
+\vspace{1cm}
+\end{equation*}
+Um eine Geradengleichung ermitteln zu können werden entweder zwei auf der Gerade liegende Punkte, oder ein Stützpunkt mit einem Richtungsvektor\newline benötigt.
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\begin{center}
+\begin{tikzpicture}
+\draw [->](0,0,0)--(3.5,0,0) node[anchor=north] {$x$};
+\draw [->](0,0,0)--(0,3.5,0) node[anchor=east] {$y$};
+\draw [->](0,0,0)--(0,0,3.5) node[anchor=east] {$z$};
+\draw [->, blue, very thick](0,0,0)--(1,1,1);
+\draw [->, orange, very thick](1,1,1)--(1.5,3,-1);
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\subsubsection{Gerade aus zwei Punkten bilden}
+\begin{minipage}{.49\textwidth}
+\begin{equation*}
+P(2|3|-1) \hspace{1cm} Q(1|4|2)
+\end{equation*}
+\vspace{.5cm}
+\begin{equation*}
+\vv{PQ} = \left(\begin{array}{c} 1-2 \\ 4-3 \\ 2-(-1) \end{array}\right) = \left(\begin{array}{c} -1 \\ 1 \\ 3 \end{array}\right) \hspace{.5cm} \vv{0P} = \left(\begin{array}{c} 2 \\ 3 \\ -1 \end{array}\right)
+\end{equation*}
+\vspace{.3cm}
+\begin{equation*}
+g:\vv{x} = \vv{0P} + r \cdot \vv{PQ} = \left(\begin{array}{c} 2 \\ 3 \\ -1 \end{array}\right) + r \cdot \left(\begin{array}{c} -1 \\ 1 \\ 3 \end{array}\right)
+\end{equation*}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\flushright
+\begin{center}
+\begin{tikzpicture}
+\draw [->](0,0,0)--(4.5,0,0) node[anchor=north] {$x$};
+\draw [->](0,0,0)--(0,4.5,0) node[anchor=east] {$y$};
+\draw [->](0,0,0)--(0,0,4.5) node[anchor=east] {$z$};
+\draw [->, blue, very thick](0,0,0)--(2,3,-1);
+\draw [->, orange, very thick](2,3,-1)--(1,4,2);
+\draw[fill=blue](2,3,-1)circle(1.5pt);
+\node at (2.5,3,0){P};
+\draw[fill=blue](1,4,2)circle(1.5pt);
+\node at (0.5,3.5,0){Q};
+\node at (1.5,1.5,0){$\vv{0P}$};
+\node at (1.3,3,0){$\vv{PQ}$};
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\newpage
+\subsubsection{Lage von Geraden zueinander}
+\begin{center}
+Zur Bestimmung der Lage zweier Geraden gibt es folgendes Kochrezept:
+\end{center}
+\begin{center}
+\begin{tikzpicture}
+\node at (0,0)[rectangle, draw] {Sind die Richtungsvektoren Vielfache?};
+\draw (-3.1,0)--(-5,0)--(-5,-3);
+\draw (3.1,0)--(5,0)--(5,-3);
+\node at (-5,-3.3)[rectangle, draw] {Liefert Gleichsetzen einen Schnittpunkt?};
+\node at (5,-3.3)[rectangle, draw] {Punktprobe mit Stützpunkt erfolgreich?};
+\draw (-7.5,-3.6)--(-7.5,-6);
+\draw (7.5,-3.6)--(7.5,-6);
+\draw (-2.5,-3.6)--(-2.5,-6);
+\draw (2.5,-3.6)--(2.5,-6);
+\node at (-7.5,-6.25)[rectangle, draw] {windschief};
+\node at (7.5,-6.25)[rectangle, draw] {identisch};
+\node at (-2.5,-6.3)[rectangle, draw] {Schnittpunkt};
+\node at (2.5,-6.3)[rectangle, draw] {parallel};
+\node at (-5.5,-1.5)[red]{Nein};
+\node at (5.4,-1.5)[green!70!black]{Ja};
+\node at (-8,-4.8)[red]{Nein};
+\node at (2,-4.8)[red]{Nein};
+\node at (-2,-4.8)[green!70!black]{Ja};
+\node at (8,-4.8)[green!70!black]{Ja};
+\end{tikzpicture}
+\end{center}
+Beispiel:\newline
+Untersuche $g_1\vv{x}$ und $g_2\vv{x}$ auf eventuell gemeinsame Punkte\newline
+\begin{equation*}
+g_1:\vv{x} = \left(\begin{array}{c} 1 \\ 1 \\ 1 \end{array}\right) + r \cdot \left(\begin{array}{c} 3 \\ 0 \\ 0 \end{array}\right) \hspace{2cm} g_2:\vv{x} = \left(\begin{array}{c} 2 \\ 1 \\ 1 \end{array}\right) + s \cdot \left(\begin{array}{c} -1 \\ 0 \\ 0 \end{array}\right)
+\end{equation*}
+Prüfen auf Vielfache:
+\begin{equation*}
+\left(\begin{array}{c} 3 \\ 0 \\ 0 \end{array}\right) = a \cdot \left(\begin{array}{c} -1 \\ 0 \\ 0 \end{array}\right) \leadsto a = -3
+\end{equation*}
+Punktprobe:
+\begin{equation*}
+\left(\begin{array}{c} 1 \\ 1 \\ 1 \end{array}\right) = \left(\begin{array}{c} 2 \\ 1 \\ 1 \end{array}\right) + s \cdot \left(\begin{array}{c} -1 \\ 0 \\ 0 \end{array}\right) \leadsto s = 1
+\end{equation*}
+\begin{center}
+Die Geraden sind identisch, da die Richtungsvektoren vielfache sind, und der Stützvektor von $g_1\vv{x}$ auf $g_2\vv{x}$ liegt.
+\end{center}
+\subsubsection{Abstand zwischen Punkt und Gerade}
+Der Abstand zwischen einer Gerade und einem Punkt lässt sich in 4 Schritten berechnen:
+\begin{enumerate}
+\item Einen allgemeinen Punkt der Geraden erstellen
+\begin{equation*}
+g:\vv{x} = \left(\begin{array}{c} 2 \\ -1 \\ 3 \end{array}\right) + r \cdot \left(\begin{array}{c} -3 \\ 0 \\ -0.5 \end{array}\right) \hspace{1cm} P(2|0|3)
+\end{equation*}
+\begin{equation*}
+\leadsto G(2-3r|-1|3-0.5r)
+\end{equation*}
+\item Verbindungsvektor vom allgemeinen Punkt zum Punkt
+\begin{equation*}
+\vv{GP} = \left(\begin{array}{c} 2-(2-3r) \\ 0-(-1) \\ 3-(3-0.5r) \end{array}\right) = \left(\begin{array}{c} 3r \\ 1 \\ 0.5r \end{array}\right)
+\end{equation*}
+\item Skalarprodukt zwischen dem Verbindungsvektor Punkt-Gerade und dem Richtungsvektor der Gerade
+\begin{equation*}
+0 = \vv{GP} \cdot \vv{u} = 3r \cdot (-3) + 1 \cdot 0 + 0.5r \cdot (-0.5) = -\dfrac{37}{4}r \leadsto r = 0
+\end{equation*}
+\item Die Länge des Verbindungsvektors Punkt-Gerade errechnen
+\begin{equation*}
+|\vv{GP}| = \sqrt{(3 \cdot 0)^2 + 1^2 + (0.5 \cdot 0)^2} = 1
+\end{equation*}
+\begin{center}
+$\leadsto$ Der Abstand zwischen Punkt P und der Geraden $g:\vv{x}$ beträgt 1 LE
+\end{center}
+\end{enumerate}
+\subsubsection{Abstand zwischen Gerade und Gerade}
+Zur Berechnung des Abstandes zweier windschiefen Geraden benötigt man folgende Formel:\newline\newline
+\begin{minipage}{.49\textwidth}
+\begin{equation*}
+d = \Biggl|\dfrac{(\vv{q}-\vv{p})\cdot\vv{n}}{|\vv{n}|}\Biggl|
+\end{equation*}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+$\vv{q}$ = Stützvektor Gerade 1\newline
+$\vv{p}$ = Stützvektor Gerade 2\newline
+$\vv{n}$ = Vektor der senkrecht auf $\vv{q}$ und $\vv{p}$ steht
+\end{minipage}\newline\newline
+Beispiel:\newline
+Berechnen Sie den Abstand zwischen $g_1:\vv{x}$ und $g_2:\vv{x}$
+\begin{equation*}
+g_1:\vv{x} = \left(\begin{array}{c} 2 \\ -1 \\ 2 \end{array}\right) + r \cdot \left(\begin{array}{c} 1 \\ 0 \\ -1 \end{array}\right) \hspace{2cm} g_2:\vv{x} = \left(\begin{array}{c} 2 \\ 0 \\ 2 \end{array}\right) + s \cdot \left(\begin{array}{c} 1 \\ 1 \\ 0 \end{array}\right)
+\end{equation*}
+\hspace{5cm} $\vv{p}$ \hspace{1.4cm} $\vv{u}$ \hspace{3.85cm} $\vv{q}$ \hspace{1.2cm} $\vv{v}$
+\begin{equation*}
+\vv{n} = \left(\begin{array}{c} 1 \\ 0 \\ -1 \end{array}\right) \times \left(\begin{array}{c} 1 \\ 1 \\ 0 \end{array}\right) = \left(\begin{array}{c} 1 \\ -1 \\ 1 \end{array}\right)
+\end{equation*}
+\vspace{0.3cm}
+\begin{equation*}
+d = \left|\dfrac{\Biggl(\left(\begin{array}{c} 2 \\ 0 \\ 2 \end{array}\right)-\left(\begin{array}{c} 2 \\ -1 \\ 2 \end{array}\right)\Biggl)\cdot \left(\begin{array}{c} 1 \\ -1 \\ 1 \end{array}\right)}{\Biggl|\left(\begin{array}{c} 1 \\ -1 \\ 1 \end{array}\right)\Biggl|}\right| = \Biggl|\dfrac{0-1+0}{\sqrt{1^2+1^2+1^2}}\Biggl| = \dfrac{1}{\sqrt{3}}
+\end{equation*}
+\begin{center}
+$\leadsto$ Der Abstand zwischen beiden Geraden beträgt $\dfrac{1}{\sqrt{3}}$ LE
+\end{center}
+\subsection{Ebenen}
+\subsubsection{Normalenvektor einer Ebene}
+Der Normalenvektor einer Ebene wird gebildet aus dem Kreuzprodukt der Spannvektoren. Der steht senkrecht auf der Ebene, seine Länge beschreibt jedoch nur die Fläche des aufgespannten Parallelogramms und nicht die Fläche der Ebene.\newline\newline
+\begin{minipage}{.49\textwidth}
+\begin{equation*}
+E:\vv{x}=\left(\begin{array}{c} 2 \\ 0 \\ 1 \end{array}\right) + r \cdot \left(\begin{array}{c} -3 \\ 2 \\ -4 \end{array}\right) + s \cdot \left(\begin{array}{c} 0 \\ 0.5 \\ 1 \end{array}\right)
+\end{equation*}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\begin{equation*}
+\vv{n} = \vv{u} \times \vv{v} = \left(\begin{array}{c} -3 \\ 2 \\ -4 \end{array}\right) \times \left(\begin{array}{c} 0 \\ 0.5 \\ 1 \end{array}\right) = \left(\begin{array}{c} 4 \\ 3 \\ -\dfrac{3}{2} \end{array}\right)
+\end{equation*}
+\end{minipage}
+\subsubsection{Parameterform}
+Die Ebene besteht aus einem Stützvektor, zwei streck/stauch Faktoren, und zwei Spannvektoren, welche die Ebene aufspannen:
+\begin{equation*}
+E:\vv{x} = \left(\begin{array}{c} 2 \\ -1 \\ 0 \end{array}\right) + r \cdot \left(\begin{array}{c} -15 \\ 1 \\ 42 \end{array}\right) + s \cdot \left(\begin{array}{c} 5 \\ 8 \\ 7 \end{array}\right)
+\end{equation*}
+\subsubsection{Koordinatenform}
+Die Koordinatenform ist wie eine Gleichung aufgebaut und zeigt die jeweiligen Schnittpunkte mit den Koordinatenachsen:
+\begin{equation*}
+E: ax_1 + bx_2 + cx_3 = d
+\end{equation*}
+Die Werte a;b;c sind die Werte des Normalenvektors, welcher senkrecht auf der Ebene steht:
+\begin{equation*}
+\vv{n} = \left(\begin{array}{c} a \\ b \\ c \end{array}\right)
+\end{equation*}
+\subsubsection{Normalenform}
+Die Normalenform besteht aus dem Normalenvektor einer Ebene und aus einem Punkt oder Stützvektor:\newline\newline
+\begin{minipage}{.3\textwidth}
+\begin{equation*}
+[\vv{x}-\vv{p}]\cdot \vv{n} =0
+\end{equation*}
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+\begin{center}
+$\longrightarrow$ Beispiel $\longrightarrow$
+\end{center}
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+\begin{equation*}
+\Biggl[\vv{x}-\left(\begin{array}{c} 1 \\ 2 \\ 3 \end{array}\right)\Biggl]\cdot \left(\begin{array}{c} 3 \\ 8 \\ 5 \end{array}\right) = 0
+\end{equation*}
+\end{minipage}
+\subsubsection{Parameterform in Koordinatenform}
+\begin{equation*}
+E:\vv{x}=\left(\begin{array}{c} 2 \\ 0 \\ 1 \end{array}\right) + r \cdot \left(\begin{array}{c} -3 \\ 2 \\ -4 \end{array}\right) + s \cdot \left(\begin{array}{c} 0 \\ 0.5 \\ 1 \end{array}\right)
+\end{equation*}
+\hspace{6.95cm} $\vv{p}$ \hspace{1.3cm} $\vv{u}$ \hspace{1.4cm} $\vv{v}$
+\begin{enumerate}
+\item Kreuzprodukt der Spannvektoren bilden:
+\begin{equation*}
+\vv{n} = \vv{u} \times \vv{v} = \left(\begin{array}{c} -3 \\ 2 \\ -4 \end{array}\right) \times \left(\begin{array}{c} 0 \\ 0.5 \\ 1 \end{array}\right) = \left(\begin{array}{c} 4 \\ 3 \\ -\dfrac{3}{2} \end{array}\right)
+\end{equation*}
+\item In die Koordinatenform bringen
+\begin{equation*}
+E: 4x_1 + 3x_2 - \dfrac{3}{2}x_3 = d
+\end{equation*}
+\item Punkt einsetzen
+\begin{equation*}
+4\cdot2+3\cdot0+(-\dfrac{3}{2})\cdot1 = 6.5 \hspace{1cm}\leadsto\hspace{1cm} E: 4x_1+3x_2-\dfrac{3}{2}x_3 = 6.5
+\end{equation*}
+\end{enumerate}
+\subsubsection{Normalenform in Koordinatenform}
+\begin{minipage}{.49\textwidth}
+\begin{equation*}
+\Biggl[\vv{x}-\left(\begin{array}{c} 1 \\ 2 \\ 3 \end{array}\right)\Biggl]\cdot \left(\begin{array}{c} 3 \\ 8 \\ 5 \end{array}\right) = 0
+\end{equation*}
+\hspace{3.45cm} $\vv{p}$ \hspace{0.8cm} $\vv{n}$
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\begin{equation*}
+\leadsto 3x_1 + 8x_2 + 5x_3 =d
+\end{equation*}
+\begin{center}
+$\vv{p}$ einsetzen: $3\cdot1+8\cdot2+5\cdot3=34$
+\end{center}
+\begin{equation*}
+\leadsto 3x_1 + 8x_2 + 5x_3 = 34
+\end{equation*}
+\end{minipage}
+\subsubsection{Koordinatenform in Parameterform}
+Um von der Koordinatenform auf die Parameterform zu wechseln, bedarf es drei beliebige Punkte auf dieser Ebene.
+\begin{equation*}
+E: 3x_1 + 8x_2 + 5x_3 = 34
+\end{equation*}
+Am Besten eignen sich hierfür die drei Achsenschnittpunkte:
+\begin{equation*}
+\leadsto P_1\left(\dfrac{34}{3}\biggl|0\biggl|0\right); P_2\left(0\biggl|\dfrac{34}{8}\biggl|0\right); P_3\left(0\biggl|0\biggl|\dfrac{34}{5}\right) 
+\end{equation*}
+Mit diesen Punkten können nun zwei Spannvektoren und ein Stützvektor erstellt werden.
+\subsection{Lage von Ebenen}
+\subsubsection{Ebenen, parallel zur X1-X2-Ebene}
+Bei der Koordinatenform \& Normalenform muss der Normalenvektor für $x_1$ und $x_2$ 0 sein. Außerdem darf der Stützpunkt nicht auf der $x_1x_2$-Ebene liegen:
+\begin{equation*}
+\vv{n}= \left(\begin{array}{c} 0 \\ 0 \\ a \end{array}\right)
+\end{equation*}
+Die Spannvektoren müssen bei der Parameterform $x_3 = 0$ sein. Hierbei darf der Stützvektor ebenfalls nicht auf der $x_1x_2$-Ebene liegen, da sie sonst identisch wären.
+\newpage
+\subsubsection{Ebenen, parallel zur X1-X3-Ebene}
+\begin{minipage}{.49\textwidth}
+Koordinaten und Normalenform:\newline
+\vspace{0.7cm}\newline
+Spannvektoren bei Parametern:
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\begin{equation*}
+\vv{n}= \left(\begin{array}{c} 0 \\ a \\ 0 \end{array}\right)
+\end{equation*}
+\begin{equation*}
+\vv{u}/\vv{v}= \left(\begin{array}{c} a \\ 0 \\ b \end{array}\right)
+\end{equation*}
+\end{minipage}
+\subsubsection{Lage von 2 Ebenen zueinander}
+\begin{enumerate}
+\item Fall: Die Ebenen sind parallel\newline
+$\leadsto$ Abstandsberechnung möglich
+\item Fall: Die Ebenen schneiden sich wobei eine Schnittgerade entsteht.\newline
+$\leadsto$ Schnittgerade kann bestimmt werden
+\item Fall: Die Ebenen sind identisch
+\end{enumerate}
+\subsubsection{Lage von Gerade und Ebene zueinander}
+\begin{enumerate}
+\item Fall: Die Gerade verläuft parallel zur Ebene\newline
+$\leadsto$ Abstandsberechnung möglich
+\item Fall: Die Gerade schneidet die Ebene\newline
+$\leadsto$ Schnittpunkt berechnen
+\item Fall: Die Gerade verläuft in der Ebene
+\end{enumerate}
+\subsubsection{Lage von 3 Ebenen zueinander}
+\begin{enumerate}
+\item Fall: Alle Ebenen schneiden sich nur in einem Punkt\newline
+$\leadsto$ Schnittpunkt berechnen
+\item Fall Es entsteht eine Schnittgerade\newline
+$\leadsto$ Schnittgerade kann bestimmt werden
+\item Fall: Es schneiden sich an keiner Stelle alle drei Ebenen.
+\end{enumerate}
+\subsection{Abstände mit Ebenen}
+\subsubsection{Abstand Punkt Ebene}
+Der Abstand Punkt-Ebene kann außerdem verwendet werden wenn:
+\begin{enumerate}
+\item Gerade und Ebene parallel sind
+\item Ebene und Ebene parallel sind
+\end{enumerate}
+\begin{minipage}{.49\textwidth}
+Anwendung:
+\begin{equation*}
+E:ax_1+bx_2+cx_3=d \hspace{2cm} P(p_1|p_2|p_3)
+\end{equation*}
+\begin{equation*}
+d_{EP} = \dfrac{|ap_1+bp_2+cp_3-d|}{|\vv{n}|}
+\end{equation*}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+Beispiel:
+\begin{equation*}
+E: 3x_1-4x_2 = -2 \hspace{2cm} P(2|-1|3)
+\end{equation*}
+\begin{equation*}
+d_{EP} = \Biggl|\dfrac{6+4+2}{\sqrt{9+16}}\Biggl| = \dfrac{12}{5}
+\end{equation*}
+\end{minipage}
+\subsubsection{Schnittgerade zweier Ebenen}
+\begin{minipage}{.49\textwidth}
+\begin{enumerate}
+\item Schritt: Ebenen in Koordinatenform übertragen
+\item Schritt: $x_1 = t$ setzen\newline
+Beispiel:
+\begin{equation*}
+E_1: 2x_1 - 3x_2 + 4x_3 = 6
+\end{equation*}
+\begin{equation*}
+E_2: x_1 - x_2 + 4x_3 = 7
+\end{equation*}
+\begin{align*}
+\uproman{1}\hspace{.3cm} 2t - 3x_2 + 4x_3 = 6 \\
+\uproman{2}\hspace{.5cm} t - x_2 + 4x_3 = 7
+\end{align*}
+\item Schritt: $\uproman{1}-\uproman{2}$\newline
+\begin{align*}
+\uproman{1}\hspace{.3cm} 2t - 3x_2 + 4x_3 = 6 \\
+\uproman{2}\hspace{.5cm} t - x_2 + 4x_3 = 7 \\
+t - 2x_2 = -1
+\end{align*}
+\begin{equation*}
+\leadsto x_2 = \dfrac{t+1}{2}
+\end{equation*}
+\end{enumerate}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item Schritt: $x_2$ in $\uproman{2}$ einsetzen für $x_3$\newline
+\begin{equation*}
+\uproman{2} \hspace{0.5cm} t-(\dfrac{t+1}{2})+4x_3=7
+\end{equation*}
+\begin{equation*}
+\leadsto x_3 = \dfrac{15}{8}-\dfrac{t}{8}
+\end{equation*}
+\item Schritt: Gerade Erstellen\newline
+\begin{align*}
+ 0+t = x_1 \\
+ \dfrac{1}{2} + \dfrac{1}{2}t = x_2 \\
+ \dfrac{15}{8}+t\cdot (-\dfrac{1}{8}) = x_3 \\
+\end{align*}
+\begin{equation*}
+\leadsto \vv{x} = \left(\begin{array}{c} 0 \\ \dfrac{1}{2} \\ \dfrac{15}{8} \end{array}\right)+t\cdot \left(\begin{array}{c} 1 \\ \dfrac{1}{2} \\ -\dfrac{1}{8} \end{array}\right)
+\end{equation*}
+\end{enumerate}
+\end{minipage}
+\subsubsection{Schnittpunkt Gerade-Ebene}
+\begin{minipage}{.49\textwidth}
+\begin{enumerate}
+\item Schritt: Gerade in die Ebene einsetzen\newline
+\begin{equation*}
+E: 2x_1-x_2+3x_3=10
+\end{equation*}
+\begin{equation*}
+g:\vv{x}= \left(\begin{array}{c} 1 \\ 2 \\ 3 \end{array}\right) + r \cdot \left(\begin{array}{c} 2 \\ 0 \\ -3 \end{array}\right)
+\end{equation*}
+\item Schritt: r berechnen
+\begin{align*}
+\leadsto 2\cdot(1+2r)-2+3(3+3r)=10 \\
+9-5r = 10 \\
+r = -\dfrac{1}{5}
+\end{align*}
+\end{enumerate}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item Schritt: r in die Gerade einsetzen
+\begin{equation*}
+\left(\begin{array}{c} 1 \\ 2 \\ 3 \end{array}\right)+\biggl(-\dfrac{1}{5}\biggl)\cdot \left(\begin{array}{c} 2 \\ 0 \\ -3 \end{array}\right) = \left(\begin{array}{c} 1-\dfrac{2}{5} \\ 2 \\ 3+\dfrac{3}{5} \end{array}\right)
+\end{equation*}
+\item Schritt: In die Punkt-Form bringen
+\begin{equation*}
+P\biggl(\dfrac{3}{5}\biggl|2\biggl|\dfrac{18}{51}\biggl)
+\end{equation*}
+\end{enumerate}
+\end{minipage}
+\newpage
+\section{Analysis}
+\subsection{Intervalle}
+\begin{align*}
+[a;b]\hspace{.25cm}\widehat{=}\hspace{.25cm} a \leq x \leq b \\
+[a;b)\hspace{.25cm}\widehat{=}\hspace{.25cm} a \leq x < b \\
+(a;b]\hspace{.25cm}\widehat{=}\hspace{.25cm} a < x \leq b \\
+(a;b)\hspace{.25cm}\widehat{=}\hspace{.25cm} a < x < b
+\end{align*}
+\begin{minipage}{.45\textwidth}
+\subsection{Differenzenquotient}
+Der Differenzenquotient beschreibt die durchschnittliche Steigung in einem definierten Intervall.
+\begin{equation*}
+\dfrac{f(x_0+h)-f(x_0)}{h}
+\end{equation*}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}{.45\textwidth}
+\subsection{Differenzialquotient}
+Der Differenzialquotient beschreibt die momentane Steigung an einer definierten Stelle.
+\begin{equation*}
+f'(x_0) = \lim\limits_{h \rightarrow 0}{\dfrac{f(x_0+h)-f(x_0)}{h}}
+\end{equation*}
+\end{minipage}
+\vspace{.5cm}\newline
+\begin{minipage}{.45\textwidth}
+\subsection{Ableitungsregeln}
+\renewcommand{\arraystretch}{2}
+\begin{tabularx}{\columnwidth}{X|X}
+$f(x)$&$f'(x)$ \\
+\hline
+$x^n$&$nx^{n-1}$\\
+$4x^2+x-32$&$8x+1$ \\
+$\sin(x)$&$\cos(x)$ \\
+$\sqrt{x}$&$0.5x^{-0.5}$ \\
+$3x^{-1}$&$-3x^{-2}$ \\
+$e^x$&$e^x$ \\
+$\dfrac{1}{x+1}$&$\dfrac{-1}{(x+1)^2}$ \\
+$\sin(x^2)$&$\cos(x^2)\cdot2x$ \\
+$u(v(x))$&$u'(v(x))\cdot v'(x)$ \\
+$u(x)\cdot v(x)$&$u'(x)\cdot v(x)+u(x)\cdot v'(x)$ \\
+$e^{3x^2}$&$e^{3x^2}\cdot 6x$ \\
+\end{tabularx}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}{.45\textwidth}
+\subsection{Integrationsregeln}
+\renewcommand{\arraystretch}{2}
+\begin{tabularx}{\columnwidth}{X|X}
+$f(x)$&$F(x)$ \\
+\hline
+$x^n$&$\dfrac{1}{n+1}x^{n+1}$\\
+$4x^2+x-32$&$\dfrac{4}{3}x^{3}+\dfrac{1}{2}x^2-32x+c$ \\
+$\sin(x)$&$-\cos(x)$ \\
+$\sqrt{x}$&$\dfrac{2}{3}x^{\dfrac{3}{2}}$ \\
+$3x^{-1}$&$3\cdot \ln(x)$ \\
+$e^x$&$e^x$ \\
+$\dfrac{1}{x+1}$&$ln(1+x)$ \\
+$u(ax+b)$&$U(ax+b)\cdot \dfrac{1}{b}$ \\
+$u(v(x))$&\textit{nicht relevant} \\
+$u(x)\cdot v(x)$&\textit{nicht relevant} \\
+$e^{3x^2}$&\textit{nicht relevant} \\
+\end{tabularx}
+\end{minipage}
+\subsection{Besondere Punkte}
+\begin{table}[h]
+\renewcommand{\arraystretch}{2}
+\begin{tabularx}{\columnwidth}{|l|X|X|}
+\hline
+\textbf{Punkt}&\textbf{Beschreibung}&\textbf{Berechnung} \\
+\hline
+\hline
+Hochpunkt&lokales Maximum&$f'(x)=0;\hspace{.5cm} f''(x)<0$ \\
+\hline
+Tiefpunkt&lokales Minimum&$f'(x)=0;\hspace{.5cm} f''(x)>0$ \\
+\hline
+Wendepunkt&keine Krümmung&$f''(x)=0;\hspace{.5cm} f'''(x)\neq0$ \\
+\hline
+Sattelpunkt&keine Krümmung, keine Steigung&$f'(x)=0;\hspace{.5cm} f''(x)=0;\hspace{.5cm}f'''(x)\neq0$ \\
+\hline
+\end{tabularx}
+\end{table}
+\subsubsection{Die NEW-Regel}
+\begin{minipage}{.45\textwidth}
+\begin{center}
+\fcolorbox{red}{white}{
+\begin{tabularx}{4cm}{lX}
+\textbf{N}&- Nullstellen \\
+\textbf{E}&- Extrempunkte \\
+\textbf{W}&- Wendestellen \\
+\end{tabularx}
+}
+\end{center}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}{.45\textwidth}
+\begin{center}
+\begin{tabularx}{\columnwidth}{lXXXXX}
+$F(x)$&N&E&W&& \\
+$f(x)$&&N&E&W& \\
+$f'(s)$&&&N&E&W \\
+\end{tabularx}
+\end{center}
+\end{minipage}
+\subsection{Krümmung und Monotonie}
+\begin{minipage}{.4\textwidth}
+\begin{center}
+$f'(x)\widehat{=}$ Steigung \\\vspace{.3cm}
+$f''(x)\widehat{=}$ Krümmung \\\vspace{.5cm}
+\end{center}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}{.49\textwidth}
+\begin{itemize}
+\item Ist $f(x)$ \textit{monoton steigend}, so ist $f'(x)\geq 0$
+\item Ist $f(x)$ \textit{monoton fallend}, so ist $f'(x)\leq 0$
+\item Ist $f(x)$ \textit{nach rechts gekrümmt}, so ist $f''(x)\leq 0$
+\item Ist $f(x)$ \textit{nach links gekrümmt}, so ist $f''(x)\geq 0$
+\end{itemize}
+\end{minipage}
+\subsection{Das Integral}
+\begin{minipage}{.45\textwidth}
+Das Integral definiert die Fläche unter einer\\ Kurve, in einem bestimmten Intervall.
+\begin{equation*}
+A = \int_{a}^{b} f(x) \,dx = \biggl[F(x)\biggl]^b_a = F(b)-F(a)
+\end{equation*}
+Sollte die Kurve unter der x-Achse verlaufen, wird die Fläche negativ. Flächen oberhalb und unterhalb der x-Achse gleichen sich aus.
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}{.45\textwidth}
+\begin{center}
+\begin{tikzpicture}
+\fill[gray!30!white] plot[samples=100, domain=0:{pi}] (\x,{sin(\x r)});
+\fill[gray!30!white] plot[samples=100, domain={pi}:{pi*2}] (\x,{sin(\x r)});
+\draw [->](0,0)--({pi*2.2},0) node[anchor=north] {$x$};
+\draw [->](0,-1.5)--(0,1.5) node[anchor=east] {$y$};
+\draw[line width=1.2pt, domain= 0:{pi*2.2}, samples=100, red]   plot (\x,{sin(\x r)})node[above] {$f(x) = \sin(x)$};
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\subsection{Flächeninhalt zwischen zwei Funktionen}
+\begin{minipage}{.45\textwidth}
+\begin{equation*}
+A = \int_{a}^{b} f(x) \,dx - \int_{a}^{b} g(x) \,dx = \int_{a}^{b} (f(x)-g(x)) \,dx
+\end{equation*}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}{.45\textwidth}
+\begin{tikzpicture}
+\fill[gray!30!white] plot[samples=100, domain=0:{pi}] (\x,{sin(\x r)});
+\fill[gray!30!white] plot[samples=100, domain={pi}:{2*pi}] (\x,{sin(\x r)});
+\fill[white] plot[samples=100, domain=0:{pi}] (\x, {0.5*sin(\x r)});
+\fill[white] plot[samples=100, domain={pi}:{2*pi}] (\x, {0.5*sin(\x r)});
+\draw [->](0,0)--({pi*2.2},0) node[anchor=north] {$x$};
+\draw [->](0,-1.5)--(0,1.5) node[anchor=east] {$y$};
+\draw[line width=1.2pt, domain= 0:{pi*2.2}, samples=100, red]   plot (\x,{sin(\x r)})node[above] {$f(x) = \sin(x)$};
+\draw[line width=1.2pt, domain= 0:{pi*2.2}, samples=100, blue]   plot (\x, {0.5*sin(\x r)});
+\end{tikzpicture}
+\end{minipage}
+\subsection{Fläche ins Unendliche (e-Funktionen)}
+\begin{minipage}{.45\textwidth}
+Um eine Fläche unter einer e-Funktion berechnen zu können, muss eine Variable $u$ als Grenze eingesetzt werden.
+\begin{equation*}
+A = \int_{0}^{u} f(x) \,dx
+\end{equation*}\\
+\vspace{.2cm}
+Beispiel:
+\begin{equation*}
+A = \int_{0}^{u} \biggl(x+\dfrac{1}{2}\biggl)^{-1} \,dx = \biggl[ln\biggl(x+\dfrac{1}{2}\biggl)\biggl]^u_0
+\end{equation*}
+\begin{equation*}
+= ln\biggl(u+\dfrac{1}{2}\biggl)-ln\biggl(\dfrac{1}{2}\biggl)
+\end{equation*}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}[t]{.45\textwidth}
+\begin{tikzpicture}
+\fill[gray!30!white](0,0)rectangle(4,1.5);
+\fill[white] plot[samples=100, domain=-1:10] (\x,{2.718281828^(-(\x))});
+\draw [->](-1,0)--({pi*2},0) node[anchor=north] {$x$};
+\draw [->](0,0)--(0,3.5) node[anchor=east] {$y$};
+\draw[line width=1.2pt, domain= -1:{pi*2}, samples=100, red] plot(\x,{2.718281828^(-(\x))}) node[above] {$f(x)=e^{-x}$};
+\draw [green!50!blue, very thick](0,-0.2)--(0,3);
+\draw [green!50!blue, very thick](4,-0.2)--(4,3);
+\node at (4,-0.5){$u$};
+\end{tikzpicture}
+\begin{center}
+Nun kann man u $\longrightarrow \infty$ laufen lassen:
+\end{center}
+\begin{equation*}
+\lim\limits_{u \rightarrow \infty} \Biggl(ln\biggl(u+\dfrac{1}{2}\biggl)-ln\biggl(\dfrac{1}{2}\biggl)\Biggl) = \infty
+\end{equation*}
+\begin{center}
+Die Fläche ist unendlich groß
+\end{center}
+\end{minipage}
+\newpage
+\section{Wahrscheinlichkeitsrechnung}
+\subsection{Definition einer Menge}
+\begin{equation*}
+E = \{a;b;c;\dots\}
+\end{equation*}
+\begin{itemize}
+\item $a\; b\; c$ sind die Elemente, alles zusammen ist die Ergebnismenge
+\item kein Element kann doppelt vorkommen
+\item $a \in M \longrightarrow$ \textit{gehört zu / Element von}
+\item $a \notin M \longrightarrow$ \textit{gehört nicht zu / kein Element von}
+\end{itemize}
+\subsection{Mengenoperationen}
+\hspace{3cm}$A=\{1;2;3\}$\hspace{6.3cm}$B=\{2;3;4\}$\newline\newline
+\begin{minipage}[left]{0.5\textwidth}
+1. Schnittmenge $A\cap B= \{2;3\}$\newline\newline\newline\newline
+2. Vereinigungsmenge $A\cup B = \{1;2;3;4\}$\newline\newline\newline\newline
+3. Differenzmenge $A\setminus B = \{1\}$
+\end{minipage}
+\begin{minipage}[right]{0.5\textwidth}
+\begin{center}
+\begin{tikzpicture}
+\draw[red, thick, save spath=red] (0,0)circle (20pt);
+\node (A) at (-0.2,0) {A};
+\draw[blue, thick, save spath=blue] (1,0)circle(20pt);
+\node (B) at (1.2,0){B};
+  \foreach \p in {red, blue}
+    \clip[restore spath=\p];
+    \draw[fill=yellow,restore spath=red];
+\end{tikzpicture}
+\end{center}
+\begin{center}
+\begin{tikzpicture}
+\filldraw[fill=yellow,draw=white, thick, save spath=red] (0,0)circle (20pt);
+\node (A) at (-0.2,0) {A};
+\filldraw[fill=yellow,draw=blue, thick, save spath=blue] (1,0)circle(20pt);
+\node (B) at (1.2,0){B};
+\draw[red, thick](0,0)circle(20pt);
+\end{tikzpicture}
+\end{center}
+\begin{center}
+\begin{tikzpicture}
+\filldraw[fill=yellow, draw=red, thick, save spath=red] (0,0)circle (20pt);
+\node (A) at (-0.2,0) {A};
+\draw[blue, thick, save spath=blue] (1,0)circle(20pt);
+\node (B) at (1.2,0){B};
+  \foreach \p in {red, blue}
+    \clip[restore spath=\p];
+    \draw[fill=white,restore spath=red];
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\subsection{Grundbegriffe}
+\begin{table}[h]
+\begin{tabularx}{17cm}{|XX|}
+\hline
+\textbf{Erwartungswert}&Der Wert, der bei \textit{häufiger (min: 30 Durchführungen)} Durchführung im Mittel angenommen wird.\newline Muss $\notin$ der Ergebnismenge sein. \\
+\hline
+\textbf{LaPlace Experiment}&Zufallsexperiment, bei dem alle Wahrscheinlichkeiten \textit{gleich verteilt} sind.\newline \textit{Beispiel: fairer, handelsüblicher Würfel} \\
+\hline
+\textbf{Ereignis}&Ein Ereignis ist eine Teilmenge der Ergebnismenge, kann also kein, eines oder mehrere Ergebnisse beinhalten. \\
+\hline
+\textbf{Ergebnismenge}&Ist die Zusammenfassung aller möglichen Ergebnisse eines Zufallsexperimentes. \\
+\hline
+\textbf{Zufallsexperiment}&Ein Experiment ist zufällig, wenn das Ergebnis mit aktuellen Methoden/Wissen nicht ausreichend gut vorhersehbar ist. Ein Zufallsexperiment besitzt eine Ergebnismenge mit \textit{mindestens} zwei Elementen.  \\
+\hline
+\end{tabularx}
+\end{table}
+\subsection{Wahrscheinlichkeit}
+\begin{center}
+$P(e)$ \textcolor{red}{Wahrscheinlichkeit des Ergebnisses \textit{e}}
+\end{center}
+\begin{enumerate}
+\item $P(e)\geq 0$
+\item $P(e_1 \vee e_2) = P(e_1)+P(e_2)$
+\item $P(e)=1$
+\end{enumerate}
+\subsection{Baumdiagramm}
+\begin{tikzpicture}[->,level/.style={sibling distance = 5cm,level distance = 2.5cm},
+						level 2/.style={sibling distance=2cm}]
+\node {}
+    child{node  {$e_1$} 
+    	child{node  {$e_1$}}
+    	child{node {$e_2$}}
+    	child{node {$e_3$}}}
+    child{node  {$e_2$} 
+    	child{node  {$e_1$}}
+    	child{node {$e_2$}}
+    	child{node {$e_3$}}}
+    child{node  {$e_3$} 
+    	child{node  {$e_1$}}
+    	child{node {$e_2$}}
+    	child{node {$e_3$}}}
+; 
+\node (A) at (-3.2,-1.25){$P_1$};
+\node (B) at (-0.3,-1.25){$P_2$};
+\node (B) at (3.2,-1.25){$P_3$};
+\node (C) at (10,-1.25){$P_1 \wedge P_2 \wedge P_3 = 1$};
+\node (D) at (10,-2.5){\textcolor{red}{1. Durchführung}};
+\node (E) at (10,-5){\textcolor{red}{2. Durchführung}};
+\end{tikzpicture}
+\begin{center}
+Die Ergebnismenge setzt sich aus den Ergebnissen $e_n$ zusammen. 
+\end{center}
+\subsection{Binomialverteilung}
+\begin{enumerate}
+\item n über k Regeln und Beispiele
+\begin{equation*}
+\left(\begin{array}{c} n\\k \end{array}\right) = \dfrac{n!}{(n-k)!\cdot k!}
+\end{equation*}
+\begin{equation*}
+0! = 1
+\end{equation*}
+Beispiel:
+\begin{equation*}
+\left(\begin{array}{c} 7\\2 \end{array}\right) = \dfrac{7!}{(7-2)!\cdot 2!} = \dfrac{7\cdot6\cdot5\cdot4\cdot3\cdot2\cdot1}{5\cdot4\cdot3\cdot2\cdot1\cdot2\cdot1} = \dfrac{42}{2} = 21
+\end{equation*}
+Regeln:\\
+\begin{minipage}{.45\textwidth}
+\begin{equation*}
+\left(\begin{array}{c} n\\n-1 \end{array}\right) = n
+\end{equation*}
+\begin{equation*}
+\left(\begin{array}{c} n\\n \end{array}\right) = 1
+\end{equation*}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}{.45\textwidth}
+\begin{equation*}
+\left(\begin{array}{c} n\\1 \end{array}\right) = n
+\end{equation*}
+\begin{equation*}
+\left(\begin{array}{c} n\\0 \end{array}\right) = 1
+\end{equation*}
+\end{minipage}
+\item Binomialverteilung\\
+Eine Zufallsvariable X ist nur dann Binomialverteilt wenn... (es müssen a und b zutreffen!)
+\begin{enumerate}
+\item es genau 2 unterschiedliche Ausgänge gibt
+\item die Wahrscheinlichkeiten gleich bleiben
+\end{enumerate}
+wenn...
+\begin{equation*}
+P(X=k) = \left(\begin{array}{c} n\\k \end{array}\right) \cdot p^k\cdot (1-p)^{n-k}
+\end{equation*}
+\begin{equation*}
+P(X \leq k) = P(x=0)+P(x=1)+\dots+P(x=k)
+\end{equation*}
+\end{enumerate}
+\newpage
+\subsection{Erwartungswert}
+\begin{equation*}
+E(X)= x_ 1 \cdot P(x=x_1)+ x_2 \cdot P(x=x_2)+ \dots +P(x=x_n)\cdot x_n
+\end{equation*}
+Ein Zufallsexperiment ist nur dann fair, wenn nach Abzug des Einsatzes der Erwartungswert 0 ergibt!\newline\newline
+Beispiel:
+\begin{center}
+\renewcommand{\arraystretch}{2.2}
+\begin{tabularx}{10cm}{|l|X|X|X|X|X|X|}
+\hline
+x&1&2&3&4&5&6 \\
+\hline
+$P(x=x)$&$\dfrac{1}{3}$&$\dfrac{1}{3}$&$\dfrac{1}{9}$&$\dfrac{1}{9}$&$\dfrac{1}{18}$&$\dfrac{1}{18}$ \\
+\hline
+\end{tabularx}
+\end{center}
+\begin{equation*}
+\leadsto E(X)= 1\cdot\dfrac{1}{3}+2\cdot\dfrac{1}{3}+3\cdot\dfrac{1}{9}+4\cdot\dfrac{1}{9}+5\cdot\dfrac{1}{18}+6\cdot\dfrac{1}{18}
+\end{equation*}
+\begin{equation*}
+= \dfrac{43}{18} \approx 2,4
+\end{equation*}
+\subsection{Unabhängigkeit zweier Ereignisse}
+Zwei Ereignisse sind unabhängig voneinander wenn gilt:
+\begin{equation*}
+P(A\cap B)= P(A)\cdot P(B)
+\end{equation*}
+\subsection{Weiterführende Begriffe}
+\begin{minipage}[t]{.45\textwidth}
+\subsubsection{Varianz}
+Die Varianz gibt die Streuung um den Erwartungswert an.
+\begin{equation*}
+Var(X)=(x_1-E(X))^2\cdot p_1 + \dots + (x_n-E(X))^2\cdot p_n
+\end{equation*}
+\subsubsection{Sigma-Regeln}
+Liefern eine Intervall um den Erwartungswert, in Abhängigkeit von der Standardabweichung, in dem eine gewisse Prozentzahl an möglichen Ergebnissen liegt. \textit{Siehe Formelsammlung}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}[t]{.45\textwidth}
+\subsubsection{Standardabweichung}
+\begin{equation*}
+\sigma = \sqrt{Var(x)}
+\end{equation*}
+\vspace{.5cm}
+\subsubsection{Vertrauensintervall}
+Zu einer gegebenen Vertrauenswahrscheinlichkeit werden die Intervallsgrenzen berechnet, in denen die möglichen Ergebnisse liegen. \textit{Siehe Formelsammlung}
+\end{minipage}
+\section{Epilog}
+Diese Zusammenfassung wurde erstellt von Jannis Müller in Zusammenarbeit mit Robin Rausch. Viele der fachlichen Inhalte stammen von ihm, ich möchte ihm für die Bereitstellung der Inhalte danken. Grafiken sowie sonstige Darstellungen und Formatierungen wurden durch mich, Jannis Müller, vorgenommen.\newline
+Für fachliche Richtigkeit, sowie sonstige Fehler übernehmen die Autoren keine Gewähr. Es liegt in der Verantwortung des Lesers, sich über die Richtigkeit der hier präsentierten Informationen zu informieren.\newline Fehler sind den Autoren unverzüglich zu melden!
+\end{document}
